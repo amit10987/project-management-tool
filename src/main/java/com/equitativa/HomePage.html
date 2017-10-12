@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8" />
+<title>Apache Wicket Quickstart</title>
+<link
+	href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"
+	title="Stylesheet" />
+</head>
+<body>
+
+
+	<div id="header">
+		<a href="#" wicket:id="projectManagerPageLink">Manage Projects</a> 
+		<a href="#" wicket:id="taskManagerPageLink">Manage Tasks</a>
+	</div>
+	<div id="body">
+		<wicket:child />
+	</div>
+	<div id="footer">
+		<span wicket:id="footer"></span>
+	</div>
+
+</body>
+</html>
