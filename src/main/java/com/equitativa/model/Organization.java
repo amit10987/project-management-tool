@@ -1,16 +1,25 @@
 package com.equitativa.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Organization {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "id")
+	private Set<Employee> employees;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "id")
+	private Set<Project> projects;
 	
 	public Long getId() {
 		return id;

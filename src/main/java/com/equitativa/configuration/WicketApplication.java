@@ -1,8 +1,12 @@
 package com.equitativa.configuration;
 
+
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.equitativa.HomePage;
 
@@ -12,8 +16,12 @@ import com.equitativa.HomePage;
  * 
  * @see com.equitativa.Start#main(String[])
  */
+@Component("wicketApplication")
 public class WicketApplication extends WebApplication
 {
+	@Autowired
+	private ApplicationContext applicationContext;
+	
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
@@ -30,8 +38,7 @@ public class WicketApplication extends WebApplication
 	public void init()
 	{
 		super.init();
-		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
-
+		getComponentInstantiationListeners().add(new SpringComponentInjector(this, applicationContext, false));
 		// add your configuration here
 	}
 }
