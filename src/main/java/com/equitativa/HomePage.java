@@ -11,10 +11,6 @@ import com.equitativa.task.TaskManagerPage;
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
 
-	public HomePage(){
-		this(new PageParameters());
-	}
-	
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 
