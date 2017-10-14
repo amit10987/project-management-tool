@@ -18,7 +18,7 @@ public class ToDo {
 	private String title;
 	@OneToOne
 	@JoinColumn
-	private Project project;
+	private Activity activity;
 	@OneToOne
 	@JoinColumn
 	private Property property;
@@ -40,12 +40,6 @@ public class ToDo {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Project getProject() {
-		return project;
-	}
-	public void setProject(Project project) {
-		this.project = project;
-	}
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -63,5 +57,11 @@ public class ToDo {
 	}
 	public void setProperty(Property property) {
 		this.property = property;
+	}
+	public Activity getActivity() {
+		return activity;
+	}
+	public void setActivity(Activity activity) {
+		this.activity = activity;
 	}
 }
