@@ -16,10 +16,8 @@ import com.equitativa.organization.repository.OrganizationRepository;
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
 
-	private static final long serialVersionUID = -5212963861024643073L;
-	
 	@Autowired
-	transient OrganizationRepository organizationRepository;
+	OrganizationRepository organizationRepository;
 	
 	@Override
 	public List<String> getOrganizationNames() {

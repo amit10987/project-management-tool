@@ -20,7 +20,7 @@ public class CreateProjectPage extends HomePage {
 	private static final long serialVersionUID = 1L;
 
 	@SpringBean
-	OrganizationService organizationService;
+	transient OrganizationService organizationService;
 
 	public CreateProjectPage(PageParameters parameters) {
 		super(parameters);

@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Employee {
@@ -17,10 +16,6 @@ public class Employee {
 	private String lastName;
 	@ManyToOne
 	private Organization company;
-	@ManyToOne
-	private Project project;
-	@OneToOne
-	private Task task;
 	
 	public Long getId() {
 		return id;
@@ -45,17 +40,5 @@ public class Employee {
 	}
 	public void setCompany(Organization company) {
 		this.company = company;
-	}
-	public Project getProject() {
-		return project;
-	}
-	public void setProject(Project project) {
-		this.project = project;
-	}
-	public Task getTask() {
-		return task;
-	}
-	public void setTask(Task task) {
-		this.task = task;
 	}
 }

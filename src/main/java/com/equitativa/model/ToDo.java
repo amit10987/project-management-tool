@@ -1,22 +1,29 @@
 package com.equitativa.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Task {
+public class ToDo {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private Long id;
-	private String name;
-	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
+	private String title;
+	@OneToOne
+	@JoinColumn
+	private Project project;
+	@OneToOne
+	@JoinColumn
+	private Property property;
+	@OneToOne
+	@JoinColumn
 	private Employee employee;
 	@Enumerated(EnumType.STRING)
 	private Status status;
@@ -27,11 +34,17 @@ public class Task {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Project getProject() {
+		return project;
+	}
+	public void setProject(Project project) {
+		this.project = project;
 	}
 	public Employee getEmployee() {
 		return employee;
@@ -45,6 +58,10 @@ public class Task {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
-	
+	public Property getProperty() {
+		return property;
+	}
+	public void setProperty(Property property) {
+		this.property = property;
+	}
 }

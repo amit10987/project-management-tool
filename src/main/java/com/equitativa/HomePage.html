@@ -2,26 +2,47 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <head>
 <meta charset="utf-8" />
-<title>Apache Wicket Quickstart</title>
-<link
-	href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
-	rel='stylesheet' type='text/css' />
+<title>ToDo</title>
 <link rel="stylesheet" href="style.css" type="text/css" media="screen"
 	title="Stylesheet" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	crossorigin="anonymous"></script>
 </head>
 <body>
+	<div id="wrap">
+		<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="#">ToDoTracker</a>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="#" wicket:id="projectManagerPageLink">Project</a> 
+					<a class="nav-item nav-link" wicket:id="taskManagerPageLink" href="#">Building</a>
+				</div>
+			</div>
+		</nav>
 
-
-	<div id="header">
-		<a href="#" wicket:id="projectManagerPageLink">Manage Projects</a> 
-		<a href="#" wicket:id="taskManagerPageLink">Manage Tasks</a>
+		<div class="container clear-top" id="main" >
+			<wicket:child />
+		</div>
 	</div>
-	<div id="body">
-		<wicket:child />
-	</div>
-	<div id="footer">
-		<span wicket:id="footer"></span>
-	</div>
-
+	<footer class="footer"><span wicket:id="footer"></span></footer>
 </body>
 </html>
