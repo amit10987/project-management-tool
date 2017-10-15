@@ -18,3 +18,7 @@ html, body {
   clear:both;
   padding-top:20px;
 }
+
+.btn {
+	cursor: pointer;
+}

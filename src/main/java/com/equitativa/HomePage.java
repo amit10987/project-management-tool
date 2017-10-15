@@ -18,7 +18,7 @@ public class HomePage extends WebPage {
 		add(new BookmarkablePageLink("activityPageLink", ActivityPage.class));
 		add(new BookmarkablePageLink("propertyPageLink", PropertyPage.class));
 		add(new BookmarkablePageLink("employeePageLink", EmployeePage.class));
-		add(new Label("footer", "This is in the footer"));
+		add(new Label("footer", ""));
 
     }
 }

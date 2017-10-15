@@ -1,5 +1,9 @@
 package com.equitativa.activity.service;
 
+import java.util.List;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import com.equitativa.model.Activity;
 
 /**
@@ -11,5 +15,9 @@ public interface ActivityService {
 	/**
 	 * @param project
 	 */
-	void create(Activity project);
+	@Transactional
+	public void create(Activity activity);
+	
+	@Transactional(readOnly = true)
+	public List<Activity> getAllActivities();
 }

@@ -1,6 +1,8 @@
 package com.equitativa.activity.service;
 
-import org.apache.wicket.spring.injection.annot.SpringBean;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.equitativa.activity.repository.ActivityRepository;
@@ -13,11 +15,16 @@ import com.equitativa.model.Activity;
 @Service
 public class ActivityServiceImpl implements ActivityService{
 
-	@SpringBean
-	ActivityRepository projectRepository;
+	@Autowired
+	ActivityRepository activityRepository;
 	
 	@Override
-	public void create(Activity project) {
-		projectRepository.save(project);
+	public void create(Activity activity) {
+		activityRepository.save(activity);
+	}
+
+	@Override
+	public List<Activity> getAllActivities() {
+		return activityRepository.findAll();
 	}
 }
