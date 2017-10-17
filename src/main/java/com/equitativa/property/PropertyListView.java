@@ -1,4 +1,4 @@
-package com.equitativa.activity;
+package com.equitativa.property;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -6,41 +6,40 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.PropertyModel;
 
-import com.equitativa.activity.service.ActivityService;
+import com.equitativa.activity.ActivityPage;
 import com.equitativa.model.Activity;
+import com.equitativa.model.Property;
+import com.equitativa.property.service.PropertyService;
 
 /**
  * @author amit
  *
  */
-public class ActivityListView extends ListView<Activity>{
-	
-	private static final long serialVersionUID = 1L;
+public class PropertyListView extends ListView<Property>{
 
-	private transient ActivityService activityService;
-	/**
-	 * @param id
-	 * @param activities
-	 */
-	public ActivityListView(String id, ActivityService activityService) {
-		super(id, activityService.getAllActivities());
-		this.activityService = activityService;
+	private static final long serialVersionUID = 1L;
+	
+	transient PropertyService propertyService;
+
+	public PropertyListView(String id, PropertyService propertyService) {
+		super(id, propertyService.getAllProperties());
+		this.propertyService = propertyService;
 	}
 	
 	@Override
-	protected void populateItem(ListItem<Activity> item) {
+	protected void populateItem(ListItem<Property> item) {
 		item.add(new Label("activityId", new PropertyModel<String>(item.getModel(), "id")));
 		item.add(new Label("activityName", new PropertyModel<String>(item.getModel(), "name")));
-		item.add(deleteActivityLink(item));
+		item.add(deletePropertyLink(item));
 	}
-
-	private Link<String> deleteActivityLink(ListItem<Activity> item) {
+	
+	private Link<String> deletePropertyLink(ListItem<Property> item) {
 		return new Link<String>("deleteActivityLink"){
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onClick() {
-				activityService.deleteActivity(item.getModelObject());
-				getSession().info("Activity deleted successfully.");
+				propertyService.deleteProperty(item.getModelObject());
+				getSession().info("Property deleted successfully.");
 				setResponsePage(ActivityPage.class);
 			}
 		};
