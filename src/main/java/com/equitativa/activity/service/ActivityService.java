@@ -20,4 +20,7 @@ public interface ActivityService {
 	
 	@Transactional(readOnly = true)
 	public List<Activity> getAllActivities();
+
+	@Transactional
+	public void deleteActivity(Activity activity);
 }

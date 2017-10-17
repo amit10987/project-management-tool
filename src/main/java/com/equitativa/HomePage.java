@@ -3,6 +3,7 @@ package com.equitativa;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.equitativa.activity.ActivityPage;
@@ -19,6 +20,6 @@ public class HomePage extends WebPage {
 		add(new BookmarkablePageLink("propertyPageLink", PropertyPage.class));
 		add(new BookmarkablePageLink("employeePageLink", EmployeePage.class));
 		add(new Label("footer", ""));
-
+		add(new FeedbackPanel("feedbackPanel"));
     }
 }

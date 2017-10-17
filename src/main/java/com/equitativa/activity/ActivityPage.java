@@ -17,10 +17,14 @@ public class ActivityPage extends HomePage{
 	@SpringBean
 	transient ActivityService activityService;
 	
+	/**
+	 * @param parameters
+	 */
 	public ActivityPage(PageParameters parameters) {
 		super(parameters);
-		add(new ActivityForm("activityForm"));
-		add(new ActivityListView("activities", activityService.getAllActivities()));
+		ActivityForm activityForm = new ActivityForm("activityForm");
+		add(activityForm);
+		add(new ActivityListView("activities", activityService));
 		/*
 		 * Form form = new Form("form");
 		addOrganizationDropDown(form);

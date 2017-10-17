@@ -13,8 +13,7 @@
 					<hr />
 					<div class="row">
 						<div class="col col-xs-6 " align="right">
-							<button type="button" class="btn btn-sm btn-primary btn-create" data-toggle="modal" data-target="#activityModal" 
-							data-whatever="">Add New</button>
+							<button type="button" class="btn btn-sm btn-primary btn-create addNewActivity" data-toggle="modal" >Add New</button>
 						</div>
 					</div>
 				</div>
@@ -29,8 +28,8 @@
 						</thead>
 						<tbody id="projectTableBodyId">
 							<tr wicket:id="activities">
-								<td><span wicket:id="activityName"></span></td>
-								<td align="right"><a class="btn btn-default"><em class="fa fa-pencil"></em></a> <a class="btn btn-default"> <em class="fa fa-trash"></em></a></td>
+								<td><span class="activityId" style="visibility: hidden;" wicket:id="activityId"></span><span class="activityName" wicket:id="activityName"></span></td>
+								<td align="right"><a href="#" class="btn btn-default editActivity"><em class="fa fa-pencil"></em></a> <a wicket:id="deleteActivityLink" class="btn btn-default"> <em class="fa fa-trash"></em></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -50,16 +49,17 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <form wicket:id="activityForm" id="activityFormId">
+	        <form wicket:id="activityForm" id="activityForm">
 	          <div class="form-group">
 	            <label for="activityName" class="form-control-label">Name:</label>
-	            <input type="text" class="form-control" id="activityNameId" wicket:id="name">
+	            <input type="hidden" wicket:id="id" id="activityModalId">
+	            <input type="text" class="form-control" id="activityModalName" wicket:id="name">
 	          </div>
 	        </form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id="saveActivityId">Save</button>
+	        <button type="button" class="btn btn-primary" id="saveActivity">Save</button>
 	      </div>
 	    </div>
 	  </div>
