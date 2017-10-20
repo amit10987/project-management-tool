@@ -25,14 +25,6 @@ public class ActivityPage extends HomePage{
 		ActivityForm activityForm = new ActivityForm("activityForm");
 		add(activityForm);
 		add(new ActivityListView("activities", activityService));
-		/*
-		 * Form form = new Form("form");
-		addOrganizationDropDown(form);
-		add(form);
-		 List<String> organizations = organizationService.getOrganizationNames();
-		Model<String> dropdownModel = new Model<>(organizations.get(0));
-		DropDownChoice<String> organizationDropDown = new DropDownChoice<String>("organization", dropdownModel,	organizations);
-		form.add(organizationDropDown);*/
 	}
 
 }

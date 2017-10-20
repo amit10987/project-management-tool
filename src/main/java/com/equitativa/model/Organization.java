@@ -19,9 +19,9 @@ public class Organization implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "id")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "organization")
 	private List<Employee> employees;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "id")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "organization")
 	private List<Property> properties;
 	
 	public Long getId() {

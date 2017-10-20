@@ -1,7 +1,6 @@
 package com.equitativa.organization.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +19,8 @@ public class OrganizationServiceImpl implements OrganizationService {
 	OrganizationRepository organizationRepository;
 	
 	@Override
-	public List<String> getOrganizationNames() {
-		return organizationRepository.findAll().stream().map(Organization::getName).collect(Collectors.toList());
+	public List<Organization> getOrganizationNames() {
+		return organizationRepository.findAll();
 	}
 
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.cache.annotation.Cacheable;
 
+import com.equitativa.model.Organization;
+
 /**
  * @author amit
  *
@@ -15,5 +17,5 @@ public interface OrganizationService{
 	 * @return
 	 */
 	@Cacheable("organizations")
-	List<String> getOrganizationNames();
+	List<Organization> getOrganizationNames();
 }

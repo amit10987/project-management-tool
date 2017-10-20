@@ -17,7 +17,7 @@ public class PropertyServiceImpl implements PropertyService{
 	
 	@Autowired
 	PropertyRepository propertyRepository;
-
+	
 	@Override
 	public List<Property> getAllProperties() {
 		return propertyRepository.findAll();
@@ -25,12 +25,11 @@ public class PropertyServiceImpl implements PropertyService{
 
 	@Override
 	public void deleteProperty(Property property) {
-		propertyRepository.delete(property);
+		propertyRepository.delete(property.getId());
 	}
 
 	@Override
 	public void create(Property property) {
 		propertyRepository.save(property);
 	}
-
 }

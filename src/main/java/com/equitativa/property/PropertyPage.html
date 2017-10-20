@@ -1,10 +1,11 @@
-   <wicket:extend>
+
+<wicket:extend>
 	<script src="script/property.js"></script>
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default panel-table">
 				<div class="panel-heading">
-				<br/>
+					<br />
 					<div class="row">
 						<div class="col col-xs-6">
 							<h3 class="panel-title">Manage Properties</h3>
@@ -13,7 +14,9 @@
 					<hr />
 					<div class="row">
 						<div class="col col-xs-6 " align="right">
-							<button type="button" class="btn btn-sm btn-primary btn-create addNewProperty" data-toggle="modal" >Add New</button>
+							<button type="button"
+								class="btn btn-sm btn-primary btn-create addNewProperty"
+								data-toggle="modal">Add New</button>
 						</div>
 					</div>
 				</div>
@@ -23,13 +26,24 @@
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th style="text-align: right;"><a class="btn btn-default"><em class="fa fa-cog"></em></a></th>
+								<th>Company</th>
+								<th style="text-align: right;"><a class="btn btn-default"><em
+										class="fa fa-cog"></em></a></th>
 							</tr>
 						</thead>
 						<tbody id="propertyTableBodyId">
 							<tr wicket:id="properties">
-								<td><span class="propertyId" style="visibility: hidden;" wicket:id="propertyId"></span><span class="activityName" wicket:id="propertyName"></span></td>
-								<td align="right"><a href="#" class="btn btn-default editProperty"><em class="fa fa-pencil"></em></a> <a wicket:id="deletePropertyLink" class="btn btn-default"> <em class="fa fa-trash"></em></a></td>
+								<td><span class="propertyId" style="visibility: hidden;" wicket:id="propertyId"></span>
+								<span class="propertyName"	wicket:id="propertyName"></span>
+								</td>
+									
+								<td> <span class="companyId" style="visibility: hidden;" wicket:id="companyId">
+								</span><span class="companyName" wicket:id="companyName"></span></td>
+								
+								<td align="right"><a href="#"
+									class="btn btn-default editProperty"><em
+										class="fa fa-pencil"></em></a> <a wicket:id="deletePropertyLink"
+									class="btn btn-default"> <em class="fa fa-trash"></em></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -39,35 +53,42 @@
 	</div>
 
 
-	<div class="modal fade" id="propertyModal" tabindex="-1" role="dialog" aria-labelledby="propertyModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="propertyModalLabel">Add Property</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        <form wicket:id="propertyForm" id="propertyForm">
-	          <div class="form-group">
-	            <label for="propertyName" class="form-control-label">Name:</label>
-	            <input type="hidden" wicket:id="id" id="propertyModalId">
-	            <input type="text" class="form-control" id="propertyModalName" wicket:id="name">
-	          </div>
-	          <div class="form-group">
-	            <label for="propertyName" class="form-control-label">Name:</label>
-	            <input type="hidden" wicket:id="id" id="propertyModalId">
-	            <input type="text" class="form-control" id="propertyModalName" wicket:id="name">
-	          </div>
-	        </form>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id="saveProperty">Save</button>
-	      </div>
-	    </div>
-	  </div>
+	<div class="modal fade" id="propertyModal" tabindex="-1" role="dialog"
+		aria-labelledby="propertyModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="propertyModalLabel">Add Property</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form wicket:id="propertyForm" id="propertyForm">
+						<div class="form-group">
+							<label for="propertyName" class="form-control-label">Name:</label>
+							<input type="hidden" wicket:id="id" id="propertyModalId">
+							<input type="text" class="form-control" id="propertyModalName"
+								wicket:id="name">
+						</div>
+
+						<div class="form-group">
+							<label for="sel1">Select Company:</label> <select
+								class="form-control" wicket:id="companies"
+								id="propertyModalCompanyName">
+							</select>
+						</div>
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="saveProperty">Save</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </wicket:extend>

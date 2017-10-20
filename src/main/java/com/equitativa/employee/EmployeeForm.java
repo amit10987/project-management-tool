@@ -1,4 +1,4 @@
-package com.equitativa.property;
+package com.equitativa.employee;
 
 import java.util.List;
 
@@ -10,67 +10,67 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import com.equitativa.activity.ActivityPage;
+import com.equitativa.employee.service.EmployeeService;
+import com.equitativa.model.Employee;
 import com.equitativa.model.Organization;
-import com.equitativa.model.Property;
 import com.equitativa.organization.service.OrganizationService;
-import com.equitativa.property.service.PropertyService;
 
 /**
  * @author amit
  *
  */
-public class PropertyForm extends Form<Void> {
+public class EmployeeForm extends Form<Void> {
 
 	private static final long serialVersionUID = 1L;
-
-	private Property property = new Property();
-
+	
+	private Employee employee = new Employee();
+	
 	@SpringBean
-	transient PropertyService propertyService;
+	transient EmployeeService employeeService;
 	
 	@SpringBean
 	transient OrganizationService organizationService;
-
-	public PropertyForm(String id) {
+	
+	public EmployeeForm(String id) {
 		super(id);
-		addPropertyId();
-		addPropertyName();
+		addEmployeeId();
+		addEmployeeFirstName();
+		addEmployeeLastName();
 		addCompanyDropDownMenu();
 	}
 
 	private void addCompanyDropDownMenu() {
 		List<Organization> organizations = organizationService.getOrganizationNames();
-		PropertyModel<Organization> organizationDropDownModel = new PropertyModel<Organization>(property, "organization");
+		PropertyModel<Organization> organizationDropDownModel = new PropertyModel<Organization>(employee, "organization");
 		organizationDropDownModel.setObject(organizations.get(0));
 		DropDownChoice<Organization> organizationDropDownChoice = new DropDownChoice<Organization>("companies", organizationDropDownModel, organizations, new ChoiceRenderer<Organization>("name", "id"));
 		add(organizationDropDownChoice);
 	}
 
-	private void addPropertyName() {
-		add(new TextField<String>("name", new PropertyModel<String>(property, "name")));
+	private void addEmployeeLastName() {
+		add(new TextField<String>("lastName", new PropertyModel<String>(employee, "lastName")));
 	}
 
-	private void addPropertyId() {
-		add(new HiddenField<String>("id", new PropertyModel<String>(property, "id")));
+	private void addEmployeeFirstName() {
+		add(new TextField<String>("firstName", new PropertyModel<String>(employee, "firstName")));
+	}
+
+	private void addEmployeeId() {
+		add(new HiddenField<String>("id", new PropertyModel<String>(employee, "id")));
 	}
 
 	public void onSubmit() {
-		boolean isUpdated = null != property.getId() ? true : false;
-		propertyService.create(property);
+		boolean isUpdated = null != employee.getId() ? true : false;
+		employeeService.create(employee);
 		prepareFeedback(isUpdated);
-		setResponsePage(PropertyPage.class);
+		setResponsePage(EmployeePage.class);
 	}
 
 	private void prepareFeedback(boolean isUpdated) {
 		if (isUpdated) {
-			getSession().info("Property updated successfully.");
+			getSession().info("Employee updated successfully.");
 		} else {
-			getSession().info("Property saved successfully.");
+			getSession().info("Employee saved successfully.");
 		}
-	}
-
-	public void onError() {
-
 	}
 }

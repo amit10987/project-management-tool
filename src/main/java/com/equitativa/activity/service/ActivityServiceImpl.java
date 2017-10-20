@@ -30,6 +30,6 @@ public class ActivityServiceImpl implements ActivityService{
 
 	@Override
 	public void deleteActivity(Activity activity) {
-		activityRepository.delete(activity);
+		activityRepository.delete(activity.getId());
 	}
 }
