@@ -1,5 +1,6 @@
 package com.equitativa.employee;
 
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -21,5 +22,8 @@ private static final long serialVersionUID = 1L;
 		super(pageParameters);
 		add(new EmployeeForm("employeeForm"));
 		add(new EmployeeListView("employees", employeeService));
+		
+		get("employeePageLink").add(new AttributeAppender("class", "active", " "));
 	}
+	
 }

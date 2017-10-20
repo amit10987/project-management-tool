@@ -20,6 +20,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
 	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
 	crossorigin="anonymous"></script>
+	<script src="script/todo.js"></script>
 </head>
 <body>
 	<div id="wrap">
@@ -30,12 +31,12 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<a class="navbar-brand" href="#">ToDoTracker</a>
+			<a class="navbar-brand nav" href="#" wicket:id="homePageLink">ToDoTracker</a>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
-					<a class="nav-item nav-link active" href="#" wicket:id="activityPageLink">Activity</a> 
-					<a class="nav-item nav-link" wicket:id="propertyPageLink" href="#">Property</a>
-					<a class="nav-item nav-link" wicket:id="employeePageLink" href="#">Employee</a>
+					<a class="nav-item nav-link nav" href="#" wicket:id="activityPageLink">Activity</a> 
+					<a class="nav-item nav-link nav" wicket:id="propertyPageLink" href="#">Property</a>
+					<a class="nav-item nav-link nav" wicket:id="employeePageLink" href="#">Employee</a>
 				</div>
 			</div>
 		</nav>
