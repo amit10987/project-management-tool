@@ -1,0 +1,135 @@
+<wicket:extend>
+	<script src="script/todo.js"></script>
+	<div class="row">
+		<div class="col-lg col-lg-offset-1">
+			<div class="panel panel-default panel-table">
+				<div class="panel-heading">
+					<br />
+					<div class="row">
+						<div class="col col-xs-6">
+							<h3 class="panel-title">Manage ToDos</h3>
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col col-xs-6 " align="right">
+							<button type="button"
+								class="btn btn-sm btn-primary btn-create addNewToDo"
+								data-toggle="modal">Add New</button>
+						</div>
+					</div>
+				</div>
+				<br />
+				<div class="panel-body">
+					<table class="table table-striped table-bordered table-list">
+						<thead>
+							<tr>
+								<th>Employee Name</th>
+								<th>Activity</th>
+								<th>Property</th>
+								<th>Start Date</th>
+								<th>End Date</th>
+								<th>Status</th>
+								<th style="text-align: right;"><a class="btn btn-default"><em
+										class="fa fa-cog"></em></a></th>
+							</tr>
+						</thead>
+						<tbody id="todoTableBodyId">
+							<tr wicket:id="todos">
+								<td><span class="todoId" style="visibility: hidden;"
+									wicket:id="todoId"></span> <span class="activityId"
+									style="visibility: hidden;" wicket:id="activityId"></span> <span
+									class="activityName" wicket:id="activityName"></span></td>
+
+								<td><span class="propertyId" style="visibility: hidden;"
+									wicket:id="propertyId"> </span><span class="propertyName"
+									wicket:id="propertyName"></span></td>
+
+								<td><span class="employeeId" style="visibility: hidden;"
+									wicket:id="employeeId"> </span><span class="employeeFullName"
+									wicket:id="employeeFullName"></span></td>
+
+								<td><span class="startDate" wicket:id="startDate"></span></td>
+
+								<td><span class="endDate" wicket:id="endDate"></span></td>
+
+								<td><span class="statusId" style="visibility: hidden;"
+									wicket:id="statusId"> </span><span class="status"
+									wicket:id="status"></span></td>
+
+								<td align="right"><a href="#"
+									class="btn btn-default editToDo"><em class="fa fa-pencil"></em></a>
+									<a wicket:id="deleteToDoLink" class="btn btn-default"> <em
+										class="fa fa-trash"></em></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade bd-example-modal-lg" id="todoModal" tabindex="-1" role="dialog"
+		aria-labelledby="todoModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="todoModalLabel">Add ToDo</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body ">
+					<form wicket:id="todoForm" id="todoForm">
+
+						<div class="form-group">
+							<input type="hidden" wicket:id="id" id="todoModalId"> <label>Select
+								Activity:</label> <select  required class="form-control" wicket:id="activities"
+								id="todoModalActivityName">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Select Property:</label> <select class="form-control"
+								wicket:id="properties" id="todoModalPropertyName">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Select Employee:</label> <select class="form-control"
+								wicket:id="employees" id="todoModalEmployeeFullName">
+							</select>
+						</div>
+
+						<div class="form-group" >
+							<label class="form-control-label">Start Date:</label> 
+							<input data-provide="datepicker"
+								type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" id="todoModalStartDate"
+								wicket:id="startDate">
+						</div>
+
+						<div class="form-group">
+							<label class="form-control-label">End Date:</label> <input
+								type="text" data-provide="datepicker" class="form-control datepicker" placeholder="dd/mm/yyyy" id="todoModalEndDate"
+								wicket:id="endDate">
+						</div>
+
+						<div class="form-group">
+							<label>Status:</label> <select class="form-control" wicket:id="statusList"
+								id="todoModalStatus">
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="saveToDo">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</wicket:extend>

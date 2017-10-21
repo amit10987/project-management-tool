@@ -1,9 +1,9 @@
 package com.equitativa.activity;
 
-import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import com.equitativa.CommonUtil;
 import com.equitativa.HomePage;
 import com.equitativa.activity.service.ActivityService;
 
@@ -23,11 +23,10 @@ public class ActivityPage extends HomePage{
 	 */
 	public ActivityPage(PageParameters parameters) {
 		super(parameters);
-		ActivityForm activityForm = new ActivityForm("activityForm");
+		ActivityForm activityForm = new ActivityForm(ActivityConstant.FORM);
 		add(activityForm);
-		add(new ActivityListView("activities", activityService));
-		
-		get("activityPageLink").add(new AttributeAppender("class", "active", " "));
+		add(new ActivityListView(ActivityConstant.ACTIVITIES, activityService));
+		get(ActivityConstant.PAGE_LINK).add(CommonUtil.appendAttributeClassActive());
 	}
 
 }

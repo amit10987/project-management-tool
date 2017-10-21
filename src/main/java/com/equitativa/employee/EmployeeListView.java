@@ -26,21 +26,21 @@ private static final long serialVersionUID = 1L;
 	
 	@Override
 	protected void populateItem(ListItem<Employee> item) {
-		item.add(new Label("employeeId", new PropertyModel<String>(item.getModel(), "id")));
-		item.add(new Label("employeeFirstName", new PropertyModel<String>(item.getModel(), "firstName")));
-		item.add(new Label("employeeLastName", new PropertyModel<String>(item.getModel(), "lastName")));
-		item.add(new Label("companyId", new PropertyModel<String>(item.getModelObject().getOrganization(), "id")));
-		item.add(new Label("companyName", new PropertyModel<String>(item.getModelObject().getOrganization(), "name")));
+		item.add(new Label(EmployeeConstant.EMPLOYEE_ID, new PropertyModel<String>(item.getModel(), EmployeeConstant.ID)));
+		item.add(new Label(EmployeeConstant.EMPLOYEE_FIRST_NAME, new PropertyModel<String>(item.getModel(), EmployeeConstant.FIRST_NAME)));
+		item.add(new Label(EmployeeConstant.EMPLOYEE_LAST_NAME, new PropertyModel<String>(item.getModel(), EmployeeConstant.LAST_NAME)));
+		item.add(new Label(EmployeeConstant.COMPANY_ID, new PropertyModel<String>(item.getModelObject().getOrganization(), EmployeeConstant.ID)));
+		item.add(new Label(EmployeeConstant.COMPANY_NAME, new PropertyModel<String>(item.getModelObject().getOrganization(), EmployeeConstant.NAME)));
 		item.add(deleteEmployeeLink(item));
 	}
 	
-	private Link<String> deleteEmployeeLink(ListItem<Employee> item) {
-		return new Link<String>("deleteEmployeeLink"){
+	private Link<String> deleteEmployeeLink(final ListItem<Employee> item) {
+		return new Link<String>(EmployeeConstant.DELETED_LINK){
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onClick() {
 				employeeService.deleteEmployee(item.getModelObject());
-				getSession().info("Employee deleted successfully.");
+				getSession().info(EmployeeConstant.DELETED_SUCCESS);
 				setResponsePage(EmployeePage.class);
 			}
 		};

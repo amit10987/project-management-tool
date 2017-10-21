@@ -10,7 +10,6 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import com.equitativa.activity.ActivityPage;
 import com.equitativa.model.Organization;
 import com.equitativa.model.Property;
 import com.equitativa.organization.service.OrganizationService;

@@ -29,18 +29,18 @@ public class ActivityListView extends ListView<Activity>{
 	
 	@Override
 	protected void populateItem(ListItem<Activity> item) {
-		item.add(new Label("activityId", new PropertyModel<String>(item.getModel(), "id")));
-		item.add(new Label("activityName", new PropertyModel<String>(item.getModel(), "name")));
+		item.add(new Label(ActivityConstant.ACTIVITY_ID, new PropertyModel<String>(item.getModel(), ActivityConstant.ID)));
+		item.add(new Label(ActivityConstant.ACTIVITY_NAME, new PropertyModel<String>(item.getModel(), ActivityConstant.NAME)));
 		item.add(deleteActivityLink(item));
 	}
 
-	private Link<String> deleteActivityLink(ListItem<Activity> item) {
-		return new Link<String>("deleteActivityLink"){
+	private Link<String> deleteActivityLink(final ListItem<Activity> item) {
+		return new Link<String>(ActivityConstant.DELETE_LINK){
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onClick() {
 				activityService.deleteActivity(item.getModelObject());
-				getSession().info("Activity deleted successfully.");
+				getSession().info(ActivityConstant.DELETED_SUCCESS);
 				setResponsePage(ActivityPage.class);
 			}
 		};

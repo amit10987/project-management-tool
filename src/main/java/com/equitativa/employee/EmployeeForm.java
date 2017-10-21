@@ -39,24 +39,30 @@ public class EmployeeForm extends Form<Void> {
 		addCompanyDropDownMenu();
 	}
 
+	/**
+	 * add company drop down, to attach employee to particular company
+	 */
 	private void addCompanyDropDownMenu() {
 		List<Organization> organizations = organizationService.getOrganizationNames();
-		PropertyModel<Organization> organizationDropDownModel = new PropertyModel<Organization>(employee, "organization");
+		PropertyModel<Organization> organizationDropDownModel = new PropertyModel<Organization>(employee, EmployeeConstant.ORGANIZATION);
 		organizationDropDownModel.setObject(organizations.get(0));
-		DropDownChoice<Organization> organizationDropDownChoice = new DropDownChoice<Organization>("companies", organizationDropDownModel, organizations, new ChoiceRenderer<Organization>("name", "id"));
+		DropDownChoice<Organization> organizationDropDownChoice = new DropDownChoice<Organization>(EmployeeConstant.COMPANIES, organizationDropDownModel, organizations, new ChoiceRenderer<Organization>("name", "id"));
 		add(organizationDropDownChoice);
 	}
 
+	/**
+	 * add employee last name
+	 */
 	private void addEmployeeLastName() {
-		add(new TextField<String>("lastName", new PropertyModel<String>(employee, "lastName")));
+		add(new TextField<String>(EmployeeConstant.LAST_NAME, new PropertyModel<String>(employee, EmployeeConstant.LAST_NAME)));
 	}
 
 	private void addEmployeeFirstName() {
-		add(new TextField<String>("firstName", new PropertyModel<String>(employee, "firstName")));
+		add(new TextField<String>(EmployeeConstant.FIRST_NAME, new PropertyModel<String>(employee, EmployeeConstant.FIRST_NAME)));
 	}
 
 	private void addEmployeeId() {
-		add(new HiddenField<String>("id", new PropertyModel<String>(employee, "id")));
+		add(new HiddenField<String>(EmployeeConstant.ID, new PropertyModel<String>(employee, EmployeeConstant.ID)));
 	}
 
 	public void onSubmit() {
@@ -68,9 +74,9 @@ public class EmployeeForm extends Form<Void> {
 
 	private void prepareFeedback(boolean isUpdated) {
 		if (isUpdated) {
-			getSession().info("Employee updated successfully.");
+			getSession().info(EmployeeConstant.UPDATED_SUCCESS);
 		} else {
-			getSession().info("Employee saved successfully.");
+			getSession().info(EmployeeConstant.SAVED_SUCCESS);
 		}
 	}
 }

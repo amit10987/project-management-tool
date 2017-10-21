@@ -33,7 +33,7 @@ public class PropertyListView extends ListView<Property>{
 		item.add(deletePropertyLink(item));
 	}
 	
-	private Link<String> deletePropertyLink(ListItem<Property> item) {
+	private Link<String> deletePropertyLink(final ListItem<Property> item) {
 		return new Link<String>("deletePropertyLink"){
 			private static final long serialVersionUID = 1L;
 			@Override

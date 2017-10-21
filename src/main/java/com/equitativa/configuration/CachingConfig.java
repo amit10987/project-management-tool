@@ -1,4 +1,4 @@
-package com.equitativa.configuration;
+/*package com.equitativa.configuration;
 
 import java.util.Arrays;
 
@@ -20,4 +20,4 @@ public class CachingConfig {
           new ConcurrentMapCache("organizations")));
         return cacheManager;
     }
-}
+}*/

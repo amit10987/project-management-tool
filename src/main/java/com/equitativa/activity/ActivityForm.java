@@ -29,13 +29,13 @@ public class ActivityForm extends Form<Void> {
 	}
 
 	private TextField<String> createActivityName() {
-		TextField<String> activityName = new TextField<String>("name", new PropertyModel<String>(activity, "name"));
+		TextField<String> activityName = new TextField<String>(ActivityConstant.NAME, new PropertyModel<String>(activity, ActivityConstant.NAME));
 		activityName.setOutputMarkupId(true);
 		return activityName;
 	}
 
 	private HiddenField<String> createActivityId() {
-		return new HiddenField<String>("id", new PropertyModel<String>(activity, "id"));
+		return new HiddenField<String>(ActivityConstant.ID, new PropertyModel<String>(activity, ActivityConstant.ID));
 	}
 	
 	public void onSubmit() {
@@ -47,9 +47,9 @@ public class ActivityForm extends Form<Void> {
 
 	private void prepareFeedback(boolean isUpdated) {
 		if(isUpdated){
-			getSession().info("Activity updated successfully.");
+			getSession().info(ActivityConstant.UPDATED_SUCCESS);
 		}else{
-			getSession().info("Activity saved successfully.");
+			getSession().info(ActivityConstant.SAVED_SUCCESS);
 		}
 	}
 
