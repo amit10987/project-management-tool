@@ -11,5 +11,6 @@ public final class CommonConstant {
 	}
 
 	public static final String SPACE = " ";
+	public static final String PATTERN_DDMMYYYY = "dd/MM/yyyy";
 
 }

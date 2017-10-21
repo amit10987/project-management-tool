@@ -21,6 +21,7 @@ $(document).ready(function(){
 		$('#todoModalStartDate').val(stratDate);
 		$('#todoModalEndDate').val(endDate);
 		$('#todoModalStatus').val(statusId);
+		$('#todoModalId').val(todoId);
 		
 		$('#todoModalLabel').text('Edit ToDo');
 		$('#todoModal').modal('show');

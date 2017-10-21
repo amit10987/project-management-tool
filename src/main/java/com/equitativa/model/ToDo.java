@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class ToDo implements Serializable{
@@ -32,7 +34,9 @@ public class ToDo implements Serializable{
 	private Employee employee;
 	@Enumerated(EnumType.STRING)
 	private Status status;
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	
 	public Long getId() {

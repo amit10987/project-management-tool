@@ -1,16 +1,18 @@
 package com.equitativa.todo;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.HiddenField;
-import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import com.equitativa.ToDoDateConverter;
 import com.equitativa.activity.service.ActivityService;
 import com.equitativa.employee.service.EmployeeService;
 import com.equitativa.model.Activity;
@@ -62,11 +64,11 @@ public class ToDoForm extends Form<Void> {
 	}
 
 	private void addEndDate() {
-		add(new TextField<String>("endDate", new PropertyModel<String>(todo, "endDate")));
+		add(new DateTextField("endDate", new PropertyModel<Date>(todo, "endDate"), new ToDoDateConverter(false)));
 	}
 
 	private void addStartDate() {
-		add(new TextField<String>("startDate", new PropertyModel<String>(todo, "startDate")));
+		add(new DateTextField("startDate", new PropertyModel<Date>(todo, "startDate"), new ToDoDateConverter(false)));
 	}
 
 	private void addEmployeeDropDown() {

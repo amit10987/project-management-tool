@@ -36,6 +36,11 @@
 						</thead>
 						<tbody id="todoTableBodyId">
 							<tr wicket:id="todos">
+							
+							<td><span class="employeeId" style="visibility: hidden;"
+									wicket:id="employeeId"> </span><span class="employeeFullName"
+									wicket:id="employeeFullName"></span></td>
+									
 								<td><span class="todoId" style="visibility: hidden;"
 									wicket:id="todoId"></span> <span class="activityId"
 									style="visibility: hidden;" wicket:id="activityId"></span> <span
@@ -45,9 +50,7 @@
 									wicket:id="propertyId"> </span><span class="propertyName"
 									wicket:id="propertyName"></span></td>
 
-								<td><span class="employeeId" style="visibility: hidden;"
-									wicket:id="employeeId"> </span><span class="employeeFullName"
-									wicket:id="employeeFullName"></span></td>
+								
 
 								<td><span class="startDate" wicket:id="startDate"></span></td>
 
@@ -82,7 +85,7 @@
 					</button>
 				</div>
 				<div class="modal-body ">
-					<form wicket:id="todoForm" id="todoForm">
+					<form wicket:id="todoForm" id="todoForm" data-toggle="validator">
 
 						<div class="form-group">
 							<input type="hidden" wicket:id="id" id="todoModalId"> <label>Select
@@ -92,7 +95,7 @@
 						</div>
 
 						<div class="form-group">
-							<label>Select Property:</label> <select class="form-control"
+							<label>Select Property:</label> <select required class="form-control"
 								wicket:id="properties" id="todoModalPropertyName">
 							</select>
 						</div>
