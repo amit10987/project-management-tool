@@ -9,8 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -54,6 +57,23 @@ public class HibernateConfiguration {
     }
     
     @Bean
+    public ResourceDatabasePopulator dbInit(){
+    	ResourceDatabasePopulator dbpopulator = new ResourceDatabasePopulator();
+    	dbpopulator.addScripts(new ClassPathResource("db_script.sql"));
+    	dbpopulator.setContinueOnError(false);
+    	return dbpopulator;
+    }
+    
+    @Bean
+    public DataSourceInitializer startupScripts(){
+    	DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
+    	dataSourceInitializer.setDataSource(dataSource());
+    	dataSourceInitializer.setDatabasePopulator(dbInit());
+    	dataSourceInitializer.setEnabled(true);
+    	return dataSourceInitializer;
+    }
+    
+    @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
     	LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
     	entityManagerFactory.setDataSource(dataSource());
@@ -67,7 +87,7 @@ public class HibernateConfiguration {
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
-        //properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
+        properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
         return properties;        
     }
      

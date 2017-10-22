@@ -43,7 +43,6 @@ public class ToDoListView extends ListView<ToDo>{
 		item.add(new DateLabel("startDate", new PropertyModel<Date>(item.getModel(), "startDate"), new ToDoDateConverter(false)));
 		item.add(new DateLabel("endDate", new PropertyModel<Date>(item.getModel(), "endDate"), new ToDoDateConverter(false)));
 		item.add(new Label("status", new Model<String>(item.getModelObject().getStatus().name())));
-		item.add(new Label("statusId", new Model<Integer>(item.getModelObject().getStatus().ordinal())));
 		item.add(deleteToDoLink(item));
 	}
 

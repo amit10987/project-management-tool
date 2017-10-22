@@ -47,6 +47,7 @@ public class EmployeeForm extends Form<Void> {
 		PropertyModel<Organization> organizationDropDownModel = new PropertyModel<Organization>(employee, EmployeeConstant.ORGANIZATION);
 		organizationDropDownModel.setObject(organizations.get(0));
 		DropDownChoice<Organization> organizationDropDownChoice = new DropDownChoice<Organization>(EmployeeConstant.COMPANIES, organizationDropDownModel, organizations, new ChoiceRenderer<Organization>("name", "id"));
+		organizationDropDownChoice.setRequired(true);
 		add(organizationDropDownChoice);
 	}
 
@@ -54,11 +55,15 @@ public class EmployeeForm extends Form<Void> {
 	 * add employee last name
 	 */
 	private void addEmployeeLastName() {
-		add(new TextField<String>(EmployeeConstant.LAST_NAME, new PropertyModel<String>(employee, EmployeeConstant.LAST_NAME)));
+		TextField<String> lastName = new TextField<String>(EmployeeConstant.LAST_NAME, new PropertyModel<String>(employee, EmployeeConstant.LAST_NAME));
+		lastName.setRequired(true);
+		add(lastName);
 	}
 
 	private void addEmployeeFirstName() {
-		add(new TextField<String>(EmployeeConstant.FIRST_NAME, new PropertyModel<String>(employee, EmployeeConstant.FIRST_NAME)));
+		TextField<String> firstName = new TextField<String>(EmployeeConstant.FIRST_NAME, new PropertyModel<String>(employee, EmployeeConstant.FIRST_NAME));
+		firstName.setRequired(true);
+		add(firstName);
 	}
 
 	private void addEmployeeId() {

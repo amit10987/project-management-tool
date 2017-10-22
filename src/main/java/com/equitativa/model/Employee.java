@@ -1,12 +1,15 @@
 package com.equitativa.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * @author amit
@@ -24,6 +27,8 @@ public class Employee implements Serializable{
 	private String lastName;
 	@ManyToOne
 	private Organization organization;
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "employee")
+	private List<ToDo> todos;
 	
 	public Long getId() {
 		return id;
@@ -48,5 +53,11 @@ public class Employee implements Serializable{
 	}
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
+	}
+	public List<ToDo> getTodos() {
+		return todos;
+	}
+	public void setTodos(List<ToDo> todos) {
+		this.todos = todos;
 	}
 }

@@ -47,7 +47,9 @@ public class PropertyForm extends Form<Void> {
 	}
 
 	private void addPropertyName() {
-		add(new TextField<String>("name", new PropertyModel<String>(property, "name")));
+		TextField<String> name = new TextField<String>("name", new PropertyModel<String>(property, "name"));
+		name.setRequired(true);
+		add(name);
 	}
 
 	private void addPropertyId() {

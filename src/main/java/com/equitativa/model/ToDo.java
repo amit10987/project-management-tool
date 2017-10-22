@@ -9,8 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -22,15 +21,11 @@ public class ToDo implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private Long id;
-	private String title;
-	@OneToOne
-	@JoinColumn
+	@ManyToOne
 	private Activity activity;
-	@OneToOne
-	@JoinColumn
+	@ManyToOne
 	private Property property;
-	@OneToOne
-	@JoinColumn
+	@ManyToOne
 	private Employee employee;
 	@Enumerated(EnumType.STRING)
 	private Status status;
@@ -44,12 +39,6 @@ public class ToDo implements Serializable{
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	public Employee getEmployee() {
 		return employee;

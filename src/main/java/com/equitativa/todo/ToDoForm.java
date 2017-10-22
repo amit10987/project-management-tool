@@ -1,6 +1,7 @@
 package com.equitativa.todo;
 
-import java.util.Arrays;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -53,21 +54,17 @@ public class ToDoForm extends Form<Void> {
 		addEmployeeDropDown();
 		addStartDate();
 		addEndDate();
-		addStatusDropDown();
-	}
-
-	private void addStatusDropDown() {
-		List<Status> status = Arrays.asList(Status.values());
-		PropertyModel<Status> dropDownModal = new PropertyModel<Status>(todo, "status");
-		DropDownChoice<Status> dropDownChoice = new DropDownChoice<Status>("statusList", dropDownModal, status, new ToDoStatusRenderer());
-		add(dropDownChoice);
 	}
 
 	private void addEndDate() {
-		add(new DateTextField("endDate", new PropertyModel<Date>(todo, "endDate"), new ToDoDateConverter(false)));
+		DateTextField endDate = new DateTextField("endDate", new PropertyModel<Date>(todo, "endDate"), new ToDoDateConverter(false));
+		endDate.setRequired(true);
+		add(endDate);
 	}
 
 	private void addStartDate() {
+		DateTextField startDate = new DateTextField("startDate", new PropertyModel<Date>(todo, "startDate"), new ToDoDateConverter(false));
+		startDate.setRequired(true);
 		add(new DateTextField("startDate", new PropertyModel<Date>(todo, "startDate"), new ToDoDateConverter(false)));
 	}
 
@@ -75,6 +72,7 @@ public class ToDoForm extends Form<Void> {
 		List<Employee> employees = employeeService.getAllEmployees();
 		PropertyModel<Employee> dropDownModal = new PropertyModel<Employee>(todo, "employee");
 		DropDownChoice<Employee> dropDownChoice = new DropDownChoice<Employee>("employees", dropDownModal, employees, new EmployeeFullNameChoiceRenderer());
+		dropDownChoice.setRequired(true);
 		add(dropDownChoice);
 	}
 
@@ -83,6 +81,7 @@ public class ToDoForm extends Form<Void> {
 		PropertyModel<Property> dropDownModal = new PropertyModel<Property>(todo, "property");
 		DropDownChoice<Property> dropDownChoice = new DropDownChoice<Property>("properties", dropDownModal, properties,
 				new ChoiceRenderer<Property>("name", "id"));
+		dropDownChoice.setRequired(true);
 		add(dropDownChoice);
 	}
 
@@ -91,6 +90,7 @@ public class ToDoForm extends Form<Void> {
 		PropertyModel<Activity> dropDownModal = new PropertyModel<Activity>(todo, "activity");
 		DropDownChoice<Activity> dropDownChoice = new DropDownChoice<Activity>("activities", dropDownModal, activities,
 				new ChoiceRenderer<Activity>("name", "id"));
+		dropDownChoice.setRequired(true);
 		add(dropDownChoice);
 	}
 
@@ -100,9 +100,25 @@ public class ToDoForm extends Form<Void> {
 
 	public void onSubmit() {
 		boolean isUpdated = null != todo.getId() ? true : false;
+		populateStatus();
 		todoService.create(todo);
 		prepareFeedback(isUpdated);
 		setResponsePage(ToDoPage.class);
+	}
+
+	private void populateStatus() {
+		LocalDate now = LocalDate.now();
+		LocalDate startDate = todo.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate endDate = todo.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		if(now.isAfter(startDate) && now.isBefore(endDate)){
+			todo.setStatus(Status.WORK_IN_PROGRESS);
+		}else if(now.isBefore(startDate)){
+			todo.setStatus(Status.NOT_YET_STARTED);
+		}else if(now.isAfter(endDate) || now.isEqual(endDate)){
+			todo.setStatus(Status.COMPLETED);
+		}else{
+			todo.setStatus(Status.STARTED);
+		}
 	}
 
 	private void prepareFeedback(boolean isUpdated) {
@@ -114,6 +130,6 @@ public class ToDoForm extends Form<Void> {
 	}
 
 	public void onError() {
-
+		
 	}
 }

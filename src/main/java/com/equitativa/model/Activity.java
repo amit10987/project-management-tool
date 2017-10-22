@@ -1,11 +1,14 @@
 package com.equitativa.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * @author amit
@@ -20,6 +23,8 @@ public class Activity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "activity")
+	private List<ToDo> todos;
 
 	public Long getId() {
 		return id;
@@ -31,6 +36,13 @@ public class Activity implements Serializable{
 		return name;
 	}
 	public void setName(String name) {
+		
 		this.name = name;
+	}
+	public List<ToDo> getTodos() {
+		return todos;
+	}
+	public void setTodos(List<ToDo> todos) {
+		this.todos = todos;
 	}
 }

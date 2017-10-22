@@ -30,6 +30,7 @@ public class ActivityForm extends Form<Void> {
 
 	private TextField<String> createActivityName() {
 		TextField<String> activityName = new TextField<String>(ActivityConstant.NAME, new PropertyModel<String>(activity, ActivityConstant.NAME));
+		activityName.setRequired(true);
 		activityName.setOutputMarkupId(true);
 		return activityName;
 	}

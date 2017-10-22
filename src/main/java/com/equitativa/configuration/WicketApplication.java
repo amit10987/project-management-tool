@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.equitativa.HomePage;
+import com.equitativa.todo.ToDoPage;
 
 /**
  * Application object for your web application.
@@ -28,7 +29,7 @@ public class WicketApplication extends WebApplication
 	@Override
 	public Class<? extends WebPage> getHomePage()
 	{
-		return HomePage.class;
+		return ToDoPage.class;
 	}
 
 	/**

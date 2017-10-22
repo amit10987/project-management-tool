@@ -22,3 +22,7 @@ html, body {
 .btn {
 	cursor: pointer;
 }
+
+.feedbackPanelERROR {
+	color: red;
+}
