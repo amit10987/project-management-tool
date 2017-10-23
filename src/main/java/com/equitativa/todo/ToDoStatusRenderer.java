@@ -8,6 +8,8 @@ import org.apache.wicket.model.IModel;
 import com.equitativa.model.Status;
 
 /**
+ * To render Status Enum
+ * 
  * @author amit
  *
  */

@@ -4,8 +4,15 @@ package com.equitativa.activity;
  * @author amit
  *
  */
-public class ActivityConstant {
+public final class ActivityConstant {
 
+	/**
+	 * Prevent instantiation
+	 */
+	private ActivityConstant(){
+		
+	}
+	
 	public static final String SAVED_SUCCESS = "Activity saved successfully.";
 	public static final String UPDATED_SUCCESS = "Activity updated successfully.";
 	public static final String ID = "id";

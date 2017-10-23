@@ -21,6 +21,12 @@ import com.equitativa.property.service.PropertyService;
  */
 public class PropertyForm extends Form<Void> {
 
+	private static final String SAVED_SUCCESSFULLY = "Property saved successfully.";
+	private static final String UPDATED_SUCCESSFULLY = "Property updated successfully.";
+	private static final String ID = "id";
+	private static final String NAME = "name";
+	private static final String ORGANIZATION = "organization";
+	
 	private static final long serialVersionUID = 1L;
 
 	private Property property = new Property();
@@ -31,6 +37,9 @@ public class PropertyForm extends Form<Void> {
 	@SpringBean
 	transient OrganizationService organizationService;
 
+	/**
+	 * @param id
+	 */
 	public PropertyForm(String id) {
 		super(id);
 		addPropertyId();
@@ -38,22 +47,31 @@ public class PropertyForm extends Form<Void> {
 		addCompanyDropDownMenu();
 	}
 
+	/**
+	 * add company drop down
+	 */
 	private void addCompanyDropDownMenu() {
 		List<Organization> organizations = organizationService.getOrganizationNames();
-		PropertyModel<Organization> organizationDropDownModel = new PropertyModel<Organization>(property, "organization");
+		PropertyModel<Organization> organizationDropDownModel = new PropertyModel<Organization>(property, ORGANIZATION);
 		organizationDropDownModel.setObject(organizations.get(0));
-		DropDownChoice<Organization> organizationDropDownChoice = new DropDownChoice<Organization>("companies", organizationDropDownModel, organizations, new ChoiceRenderer<Organization>("name", "id"));
+		DropDownChoice<Organization> organizationDropDownChoice = new DropDownChoice<Organization>("companies", organizationDropDownModel, organizations, new ChoiceRenderer<Organization>(NAME, ID));
 		add(organizationDropDownChoice);
 	}
 
+	/**
+	 * Property name add
+	 */
 	private void addPropertyName() {
-		TextField<String> name = new TextField<String>("name", new PropertyModel<String>(property, "name"));
+		TextField<String> name = new TextField<String>(NAME, new PropertyModel<String>(property, NAME));
 		name.setRequired(true);
 		add(name);
 	}
 
+	/**
+	 * add id to track property
+	 */
 	private void addPropertyId() {
-		add(new HiddenField<String>("id", new PropertyModel<String>(property, "id")));
+		add(new HiddenField<String>(ID, new PropertyModel<String>(property, ID)));
 	}
 
 	public void onSubmit() {
@@ -63,15 +81,15 @@ public class PropertyForm extends Form<Void> {
 		setResponsePage(PropertyPage.class);
 	}
 
+	/**
+	 * @param isUpdated
+	 */
 	private void prepareFeedback(boolean isUpdated) {
 		if (isUpdated) {
-			getSession().info("Property updated successfully.");
+			getSession().info(UPDATED_SUCCESSFULLY);
 		} else {
-			getSession().info("Property saved successfully.");
+			getSession().info(SAVED_SUCCESSFULLY);
 		}
 	}
 
-	public void onError() {
-
-	}
 }

@@ -17,8 +17,12 @@ public class ToDoPage  extends HomePage{
 	@SpringBean
 	transient ToDoService todoService;
 	
+	/**
+	 * @param parameters
+	 */
 	public ToDoPage(PageParameters parameters) {
 		super(parameters);
+		
 		add(new ToDoForm("todoForm"));
 		add(new ToDoListView("todos", todoService));
 	}

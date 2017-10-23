@@ -4,7 +4,14 @@ package com.equitativa.employee;
  * @author amit
  *
  */
-public class EmployeeConstant {
+public final class EmployeeConstant {
+	
+	/**
+	 * prevent instantiation
+	 */
+	private EmployeeConstant(){
+		
+	}
 
 	public static final String ORGANIZATION =  "organization";
 	public static final String COMPANIES =  "companies";

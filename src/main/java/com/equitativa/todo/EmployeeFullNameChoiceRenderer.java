@@ -12,6 +12,8 @@ import com.equitativa.CommonConstant;
 import com.equitativa.model.Employee;
 
 /**
+ * To render employee full name
+ * 
  * @author amit
  *
  */
@@ -19,6 +21,9 @@ public class EmployeeFullNameChoiceRenderer implements IChoiceRenderer<Employee>
 
 	private static final long serialVersionUID = 1L;
 
+	/* 
+	 *Get display name, concat first and last name
+	 */
 	@Override
 	public String getDisplayValue(Employee employee) {
 		return employee.getFirstName() + CommonConstant.SPACE + employee.getLastName();

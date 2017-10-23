@@ -34,6 +34,10 @@ public class ActivityListView extends ListView<Activity>{
 		item.add(deleteActivityLink(item));
 	}
 
+	/**
+	 * @param item
+	 * @return
+	 */
 	private Link<String> deleteActivityLink(final ListItem<Activity> item) {
 		return new Link<String>(ActivityConstant.DELETE_LINK){
 			private static final long serialVersionUID = 1L;

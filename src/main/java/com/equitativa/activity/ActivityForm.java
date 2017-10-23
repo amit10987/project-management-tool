@@ -22,12 +22,20 @@ public class ActivityForm extends Form<Void> {
 	@SpringBean
 	transient ActivityService activityService;
 	
+	/**
+	 * @param id
+	 */
 	public ActivityForm(String id) {
 		super(id);
 		add(createActivityId());
 		add(createActivityName());
 	}
 
+	/**
+	 * create activity name
+	 * 
+	 * @return
+	 */
 	private TextField<String> createActivityName() {
 		TextField<String> activityName = new TextField<String>(ActivityConstant.NAME, new PropertyModel<String>(activity, ActivityConstant.NAME));
 		activityName.setRequired(true);
@@ -35,6 +43,11 @@ public class ActivityForm extends Form<Void> {
 		return activityName;
 	}
 
+	/**
+	 * Create hiddenField ActivityId
+	 * 
+	 * @return
+	 */
 	private HiddenField<String> createActivityId() {
 		return new HiddenField<String>(ActivityConstant.ID, new PropertyModel<String>(activity, ActivityConstant.ID));
 	}
@@ -46,15 +59,14 @@ public class ActivityForm extends Form<Void> {
 		setResponsePage(ActivityPage.class);
 	}
 
+	/**
+	 * @param isUpdated
+	 */
 	private void prepareFeedback(boolean isUpdated) {
 		if(isUpdated){
 			getSession().info(ActivityConstant.UPDATED_SUCCESS);
 		}else{
 			getSession().info(ActivityConstant.SAVED_SUCCESS);
 		}
-	}
-
-	public void onError() {
-		
 	}
 }

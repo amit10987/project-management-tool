@@ -14,6 +14,9 @@ public class ToDoDateConverter extends DateConverter{
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @param applyTimeZoneDifference
+	 */
 	public ToDoDateConverter(boolean applyTimeZoneDifference) {
 		super(applyTimeZoneDifference);
 	}

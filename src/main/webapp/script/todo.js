@@ -26,13 +26,19 @@ $(document).ready(function() {
 		var employeeId = $(this).closest('tr').find('span.employeeId').text();
 		var stratDate = $(this).closest('tr').find('span.startDate').text();
 		var endDate = $(this).closest('tr').find('span.endDate').text();
+		var statusId = $(this).closest('tr').find('span.statusId').text();
 
 		$('#todoModalActivityName').val(activityId);
 		$('#todoModalPropertyName').val(propertyId);
 		$('#todoModalEmployeeFullName').val(employeeId);
-
+		
+		$('#todoModalStartDate').prop("readonly", "readonly");
+		$('#todoModalEndDate').prop("readonly", "readonly");
+		$('#todoModalStartDate').off();
+		$('#todoModalEndDate').off();
 		$('#todoModalStartDate').val(stratDate);
 		$('#todoModalEndDate').val(endDate);
+		$('#todoModalStatus').val(statusId);
 		$('#todoModalId').val(todoId);
 
 		$('#todoModalLabel').text('Edit ToDo');
@@ -48,6 +54,8 @@ $(document).ready(function() {
 		$('#todoModalPropertyName').val('');
 		$('#todoModalEmployeeFullName').val('');
 		$('#todoModalActivityName').val('');
+		$('#todoModalStartDate').on();
+		$('#todoModalEndDate').on();
 		$('#todoModal').modal('show');
 	});
 

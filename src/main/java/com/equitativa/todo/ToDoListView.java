@@ -21,10 +21,29 @@ import com.equitativa.todo.service.ToDoService;
  */
 public class ToDoListView extends ListView<ToDo>{
 
+	private static final String TO_DO_DELETED_SUCCESSFULLY = "ToDo deleted successfully.";
+	private static final String DELETE_TO_DO_LINK = "deleteToDoLink";
+	private static final String NAME = "name";
+	private static final String ID = "id";
+	private static final String STATUS_ID = "statusId";
+	private static final String STATUS = "status";
+	private static final String END_DATE = "endDate";
+	private static final String START_DATE = "startDate";
+	private static final String EMPLOYEE_FULL_NAME = "employeeFullName";
+	private static final String EMPLOYEE_ID = "employeeId";
+	private static final String PROPERTY_NAME = "propertyName";
+	private static final String PROPERTY_ID = "propertyId";
+	private static final String ACTIVITY_NAME = "activityName";
+	private static final String ACTIVITY_ID = "activityId";
+	private static final String TODO_ID = "todoId";
 	private static final long serialVersionUID = 1L;
 	
 	transient ToDoService todoService;
 
+	/**
+	 * @param id
+	 * @param todoService
+	 */
 	public ToDoListView(String id, ToDoService todoService) {
 		super(id, todoService.getAlltodos());
 		this.todoService = todoService;
@@ -33,16 +52,17 @@ public class ToDoListView extends ListView<ToDo>{
 	@Override
 	protected void populateItem(ListItem<ToDo> item) {
 		
-		item.add(new Label("todoId", new PropertyModel<String>(item.getModel(), "id")));
-		item.add(new Label("activityId", new PropertyModel<String>(item.getModelObject().getActivity(), "id")));
-		item.add(new Label("activityName", new PropertyModel<String>(item.getModelObject().getActivity(), "name")));
-		item.add(new Label("propertyId", new PropertyModel<String>(item.getModelObject().getProperty(), "id")));
-		item.add(new Label("propertyName", new PropertyModel<String>(item.getModelObject().getProperty(), "name")));
-		item.add(new Label("employeeId", new PropertyModel<String>(item.getModelObject().getEmployee(), "id")));
-		item.add(new Label("employeeFullName", new Model<String>(getEmployeeFullName(item))));
-		item.add(new DateLabel("startDate", new PropertyModel<Date>(item.getModel(), "startDate"), new ToDoDateConverter(false)));
-		item.add(new DateLabel("endDate", new PropertyModel<Date>(item.getModel(), "endDate"), new ToDoDateConverter(false)));
-		item.add(new Label("status", new Model<String>(item.getModelObject().getStatus().name())));
+		item.add(new Label(TODO_ID, new PropertyModel<String>(item.getModel(), ID)));
+		item.add(new Label(ACTIVITY_ID, new PropertyModel<String>(item.getModelObject().getActivity(), ID)));
+		item.add(new Label(ACTIVITY_NAME, new PropertyModel<String>(item.getModelObject().getActivity(), NAME)));
+		item.add(new Label(PROPERTY_ID, new PropertyModel<String>(item.getModelObject().getProperty(), ID)));
+		item.add(new Label(PROPERTY_NAME, new PropertyModel<String>(item.getModelObject().getProperty(), NAME)));
+		item.add(new Label(EMPLOYEE_ID, new PropertyModel<String>(item.getModelObject().getEmployee(), ID)));
+		item.add(new Label(EMPLOYEE_FULL_NAME, new Model<String>(getEmployeeFullName(item))));
+		item.add(new DateLabel(START_DATE, new PropertyModel<Date>(item.getModel(), START_DATE), new ToDoDateConverter(false)));
+		item.add(new DateLabel(END_DATE, new PropertyModel<Date>(item.getModel(), END_DATE), new ToDoDateConverter(false)));
+		item.add(new Label(STATUS, new Model<String>(item.getModelObject().getStatus().name())));
+		item.add(new Label(STATUS_ID, new Model<Integer>(item.getModelObject().getStatus().ordinal())));
 		item.add(deleteToDoLink(item));
 	}
 
@@ -53,7 +73,7 @@ public class ToDoListView extends ListView<ToDo>{
 	private String getEmployeeFullName(ListItem<ToDo> item) {
 		
 		if(null == item.getModelObject().getEmployee()){
-			return "";
+			return CommonConstant.EMPTY_STRING;
 		}
 		
 		String firstName = item.getModelObject().getEmployee().getFirstName();
@@ -61,13 +81,17 @@ public class ToDoListView extends ListView<ToDo>{
 		return firstName + CommonConstant.SPACE + lastName;
 	}
 	
+	/**
+	 * @param item
+	 * @return
+	 */
 	private Link<String> deleteToDoLink(final ListItem<ToDo> item) {
-		return new Link<String>("deleteToDoLink"){
+		return new Link<String>(DELETE_TO_DO_LINK){
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onClick() {
 				todoService.deleteToDo(item.getModelObject());
-				getSession().info("ToDo deleted successfully.");
+				getSession().info(TO_DO_DELETED_SUCCESSFULLY);
 				setResponsePage(ToDoPage.class);
 			}
 		};

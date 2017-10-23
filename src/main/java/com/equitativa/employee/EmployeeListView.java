@@ -19,6 +19,10 @@ private static final long serialVersionUID = 1L;
 	
 	transient EmployeeService employeeService;
 
+	/**
+	 * @param id
+	 * @param employeeService
+	 */
 	public EmployeeListView(String id, EmployeeService employeeService) {
 		super(id, employeeService.getAllEmployees());
 		this.employeeService = employeeService;
@@ -34,6 +38,10 @@ private static final long serialVersionUID = 1L;
 		item.add(deleteEmployeeLink(item));
 	}
 	
+	/**
+	 * @param item
+	 * @return
+	 */
 	private Link<String> deleteEmployeeLink(final ListItem<Employee> item) {
 		return new Link<String>(EmployeeConstant.DELETED_LINK){
 			private static final long serialVersionUID = 1L;

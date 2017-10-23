@@ -20,6 +20,10 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
  
+/**
+ * @author amit
+ *
+ */
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories("com.equitativa")
@@ -29,6 +33,9 @@ public class HibernateConfiguration {
     @Autowired
     private Environment environment;
  
+    /**
+     * @return
+     */
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -38,6 +45,9 @@ public class HibernateConfiguration {
         return sessionFactory;
      }
      
+    /**
+     * @return
+     */
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -48,6 +58,9 @@ public class HibernateConfiguration {
         return dataSource;
     }
      
+    /**
+     * @return
+     */
     @Bean
     public HibernateJpaVendorAdapter jpaVendorAdapter(){
     	HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -56,6 +69,9 @@ public class HibernateConfiguration {
     	return vendorAdapter;
     }
     
+    /**
+     * @return
+     */
     @Bean
     public ResourceDatabasePopulator dbInit(){
     	ResourceDatabasePopulator dbpopulator = new ResourceDatabasePopulator();
@@ -64,6 +80,9 @@ public class HibernateConfiguration {
     	return dbpopulator;
     }
     
+    /**
+     * @return
+     */
     @Bean
     public DataSourceInitializer startupScripts(){
     	DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
@@ -73,6 +92,9 @@ public class HibernateConfiguration {
     	return dataSourceInitializer;
     }
     
+    /**
+     * @return
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
     	LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
@@ -82,6 +104,9 @@ public class HibernateConfiguration {
     	return entityManagerFactory;
     }
     
+    /**
+     * @return
+     */
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
@@ -91,6 +116,9 @@ public class HibernateConfiguration {
         return properties;        
     }
      
+    /**
+     * @return
+     */
     @Bean
     public JpaTransactionManager transactionManager() {
     	JpaTransactionManager txManager = new JpaTransactionManager();
