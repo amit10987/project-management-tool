@@ -36,29 +36,25 @@
 						</thead>
 						<tbody id="todoTableBodyId">
 							<tr wicket:id="todos" class="todos">
-							
-							<td><span class="employeeId" style="display:none;"
+
+								<td><span class="employeeId" style="display: none;"
 									wicket:id="employeeId"> </span><span class="employeeFullName"
 									wicket:id="employeeFullName"></span></td>
-									
-								<td><span class="todoId" style="display:none;"
+
+								<td><span class="todoId" style="display: none;"
 									wicket:id="todoId"></span> <span class="activityId"
-									style="display:none;" wicket:id="activityId"></span> <span
+									style="display: none;" wicket:id="activityId"></span> <span
 									class="activityName" wicket:id="activityName"></span></td>
 
-								<td><span class="propertyId" style="display:none;"
+								<td><span class="propertyId" style="display: none;"
 									wicket:id="propertyId"> </span><span class="propertyName"
 									wicket:id="propertyName"></span></td>
-
-								
 
 								<td><span class="startDate" wicket:id="startDate"></span></td>
 
 								<td><span class="endDate" wicket:id="endDate"></span></td>
 
-								<!-- <td><span class="status" wicket:id="status"></span></td> -->
-								
-								<td><span class="statusId" style="display:none;"
+								<td><span class="statusId" style="display: none;"
 									wicket:id="statusId"> </span><span class="status"
 									wicket:id="status"></span></td>
 
@@ -75,8 +71,9 @@
 	</div>
 
 
-	<div class="modal fade bd-example-modal-lg" id="todoModal" tabindex="-1" role="dialog"
-		aria-labelledby="todoModalLabel" aria-hidden="true">
+	<div class="modal fade bd-example-modal-lg" id="todoModal"
+		tabindex="-1" role="dialog" aria-labelledby="todoModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -91,41 +88,44 @@
 
 						<div class="form-group">
 							<input type="hidden" wicket:id="id" id="todoModalId"> <label>Select
-								Activity:</label> <select  required class="form-control" wicket:id="activities"
-								id="todoModalActivityName">
+								Activity:</label> <select required class="form-control"
+								wicket:id="activities" id="todoModalActivityName">
 							</select>
 						</div>
 
 						<div class="form-group">
-							<label>Select Property:</label> <select required class="form-control"
-								wicket:id="properties" id="todoModalPropertyName">
+							<label>Select Property:</label> <select required
+								class="form-control" wicket:id="properties"
+								id="todoModalPropertyName">
 							</select>
 						</div>
 
 						<div class="form-group">
-							<label>Select Employee:</label> <select required class="form-control"
-								wicket:id="employees" id="todoModalEmployeeFullName">
+							<label>Select Employee:</label> <select required
+								class="form-control" wicket:id="employees"
+								id="todoModalEmployeeFullName">
 							</select>
-						</div>
-
-						<div class="form-group" >
-							<label class="form-control-label">Start Date:</label> 
-							<input data-provide="datepicker" required
-								type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" id="todoModalStartDate"
-								wicket:id="startDate">
 						</div>
 
 						<div class="form-group">
-							<label class="form-control-label">End Date:</label> <input required
-								type="text" data-provide="datepicker" class="form-control datepicker" placeholder="dd/mm/yyyy" id="todoModalEndDate"
-								wicket:id="endDate">
+							<label class="form-control-label">Start Date:</label> <input
+								data-provide="datepicker" required type="text"
+								class="form-control datepicker" placeholder="dd/mm/yyyy"
+								id="todoModalStartDate" wicket:id="startDate">
 						</div>
 
-						 <div class="form-group">
-							<label>Status:</label> <select required class="form-control" wicket:id="statusList"
-								id="todoModalStatus">
+						<div class="form-group">
+							<label class="form-control-label">End Date:</label> <input
+								required type="text" data-provide="datepicker"
+								class="form-control datepicker" placeholder="dd/mm/yyyy"
+								id="todoModalEndDate" wicket:id="endDate">
+						</div>
+
+						<div class="form-group">
+							<label>Status:</label> <select required class="form-control"
+								wicket:id="statusList" id="todoModalStatus">
 							</select>
-						</div> 
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -136,5 +136,4 @@
 			</div>
 		</div>
 	</div>
-
 </wicket:extend>
