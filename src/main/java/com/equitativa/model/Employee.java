@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 /**
  * @author amit
@@ -21,7 +22,8 @@ public class Employee implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_generator")
+	@SequenceGenerator(name="employee_generator", sequenceName = "employee_seq")
 	private Long id;
 	private String firstName;
 	private String lastName;

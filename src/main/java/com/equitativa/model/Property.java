@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Property implements Serializable{
@@ -17,7 +18,8 @@ public class Property implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "property_generator")
+	@SequenceGenerator(name="property_generator", sequenceName = "property_seq")
 	private Long id;
 	private String name;
 	@ManyToOne

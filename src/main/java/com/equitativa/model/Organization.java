@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Organization implements Serializable{
@@ -16,7 +17,8 @@ public class Organization implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "org_generator")
+	@SequenceGenerator(name="org_generator", sequenceName = "org_seq")
 	private Long id;
 	private String name;
 	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "organization")
